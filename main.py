@@ -51,6 +51,7 @@ print (f"""Summary:
 """)
 input("Press enter when you're ready to start the game...")
 system('clear')
+
 #Main Game & CheckWinnerFunction
 board = [" "," "," ",
          " "," "," ",
@@ -62,22 +63,22 @@ def DrawBoard():
     print('-+-+-')
     print (board[6]+"|"+board[7]+"|"+board[8])
 
-def CheckWinner():
-    if board[0] == board[1] == board[2]:
+def CheckWinner(symbol):
+    if board[0] == symbol and board[1] == symbol and board[2] == symbol:
         return (True)
-    elif board[3] == board[4] == board[5]:
+    elif board[3] == symbol and board[4] == symbol and board[5] == symbol:
         return (True)
-    elif board[6] == board[7] == board[8]:
+    elif board[6] == symbol and board[7] == symbol and board[8] == symbol:
         return (True)
-    elif board[0] == board[3] == board[6]:
+    elif board[0] == symbol and board[3] == symbol and board[6] == symbol:
         return (True)
-    elif board[1] == board[4] == board[7]:
+    elif board[1] == symbol and board[4] == symbol and board[7] == symbol:
         return (True)
-    elif board[2] == board[5] == board[8]:
+    elif board[2] == symbol and board[5] == symbol and board[8] == symbol:
         return (True)
-    elif board[0] == board[4] == board[8]:
+    elif board[0] == symbol and board[4] == symbol and board[8] == symbol:
         return (True)
-    elif board[2] == board[4] == board[6]:
+    elif board[2] == symbol and board[4] == symbol and board[6] == symbol:
         return (True)
     else:
         return (False)
@@ -87,13 +88,16 @@ gameloop = True
 playergo = random.randint(1,2)
 
 while gameloop:
+    symbol = ""
     if playergo == 1:
         player1go = input ("Player 1! It's your go, what is your move: ")
         player1square = int(player1go)-1
         if player1 == "Noughts":
             board[player1square] = "O"
+            symbol = "O"
         elif player1 == "Crosses":
             board[player1square] = "X"
+            symbol = "X"
         system('clear')
         DrawBoard()
     else:
@@ -101,18 +105,20 @@ while gameloop:
         player2square = int(player2go)-1
         if player2 == "Noughts":
             board[player2square] = "O"
+            symbol = "O"
         elif player2 == "Crosses":
             board[player2square] = "X"
+            symbol = "X"
         system('clear')
         DrawBoard()
-    checkwinner = CheckWinner()
+    checkwinner = CheckWinner(symbol)
     if checkwinner == True:
-        gameloop = False
+        break
     
     if playergo == 1:
         playergo = 2
     else:
-        playergo = 2
+        playergo = 1
     
 winner = playergo
 if winner == 1:
