@@ -19,7 +19,6 @@ def ChooseSelectPlayer():
     return selectplayer
 selectplayer = ChooseSelectPlayer()
 def GetSelectPlayerName():
-    playernames = [player1name,player2name]
     if selectplayer == "Player 1":
         selectplayername = player1name
     else:
